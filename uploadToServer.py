@@ -7,7 +7,7 @@ def uploadeverything(params, files):
     for i in range(len(files)):
         paramstosend["file"+str(i)] = open(files[i], "rb")
     print paramstosend
-    opener.open("http://127.0.0.1:3000/post", paramstosend)
+    opener.open("http://anonymousbox.herokuapp.com/post", paramstosend)
 #   paramstosend = params
 #   paramstosend["file"] = open(filename, "rb")
 #   print paramstosend
