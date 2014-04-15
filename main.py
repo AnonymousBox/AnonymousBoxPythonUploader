@@ -1,5 +1,5 @@
 #!/usr/bin/env python  
-import serial, pygame, pygame.camera, time, ast
+import serial, urllib2, pygame, pygame.camera, time, ast, json
 import uploadToServer
 
 PORT = '/dev/ttyUSB0'

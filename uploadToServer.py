@@ -1,4 +1,4 @@
-import MultipartPostHandler, urllib2, cookielib
+import MultipartPostHandler, urllib2, cookielib, json
 def uploadeverything(params, files):
     cookies = cookielib.CookieJar()
     opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookies),
@@ -6,6 +6,7 @@ def uploadeverything(params, files):
     paramstosend = params
     for i in range(len(files)):
         paramstosend["file"+str(i)] = open(files[i], "rb")
+    paramstosend["temperature"] = json.loads(urllib2.urlopen("http://api.openweathermap.org/data/2.5/weather?q=amherst&units=imperial").read())['main']['temp']
     print paramstosend
     opener.open("http://anonymousbox.herokuapp.com/post", paramstosend)
 #   paramstosend = params
