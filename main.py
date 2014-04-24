@@ -42,17 +42,17 @@ if __name__ == '__main__':
            break
        except serial.serialutil.SerialException as e:
            print "no duino found"
-           time.sleep(1)
+           time.sleep(1000)
            pass
    cameras = CameraPicture()
 
    while(True):
        data = ser.readlines()
        if len(data) >= 1:
+           cameras.take_pictures()
            data[0] = data[0].replace('\x02', '')
            print data
            params = ast.literal_eval(data[0])
            print params
-           cameras.take_pictures()
            filenames = cameras.save_pictures()
            uploadToServer.uploadeverything(params, filenames)
